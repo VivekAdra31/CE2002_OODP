@@ -16,6 +16,7 @@ import manager.BookingManager;
 import manager.CustomerMovieListingManager;
 import manager.CustomerMovieManager;
 import manager.PriceManager;
+import movielistingdao.HolidaysDAO;
 import utility.CSVFileIO;
 import utility.CSVRow;
 /**
@@ -61,12 +62,15 @@ public class CustomerUI {
                     new CustomerCineplexUI().startUp();
                     break;
                 case 4:
-                	bookingCall();
+                	/**
+                	 * Function to Book Tickets
+                	 */
+                	bookingCall(); 
                 	break;
                 case 5:
                 	System.out.println("Enter Email ID Used:");
                 	String emailID = scanner.nextLine();
-                	BookingUI.printReviews(emailID);break;
+                	BookingUI.printReviews(emailID.toUpperCase());break;
                 case 6:
                 	System.out.println("Enter Name of Movie to Review and Rate:");
                 	//scanner.nextLine();
@@ -125,13 +129,16 @@ public class CustomerUI {
         MovieListing to_book = relevantListings.get(a-1);
         to_book.showSeatAvailability();
         int row =0;
+        char row_char=0;
         while(true) {
-        System.out.println("Enter Row(Enter -1 to stop booking)");
-        row = scanner.nextInt();
-        if(row==-1)break;
+        System.out.println("Enter Row(Enter $ to stop booking)");
+        row_char = scanner.next().charAt(0);
+        row= (int)(row_char-64);
+        if(row_char=='$')break;
+        row--;
         System.out.println("Enter Collumn");
         int col = scanner.nextInt();
-       
+       col--;
         if(!to_book.checkIfSeatFree(row,col))
         {
         	 System.out.println("Seat Not Free, Aborting!");break;
@@ -164,8 +171,7 @@ public class CustomerUI {
         type2+=10;
         int price3=0;
         price3= PriceManager.fetch(type2);
-        ArrayList<CSVRow> holidays =CSVFileIO.getParsedCSV("holidays.csv");
-        holidays = CSVFileIO.getParsedCSV("holidays.csv");
+        ArrayList<CSVRow> holidays = HolidaysDAO.returnHolidays();
         int price4=0;
     	for(int i =0; i< holidays.size();i++)
     	{ 

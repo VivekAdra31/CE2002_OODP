@@ -10,6 +10,7 @@ import entities.Movie;
 import entities.Reviews;
 import manager.AdminMovieManager;
 import manager.CustomerMovieManager;
+import manager.HolidayManager;
 import manager.PriceManager;
 import manager.ReviewManager;
 import utility.CSVFileIO;
@@ -73,6 +74,7 @@ public class AdminMovieUI {
     
     /**
      * UI for Admin to Make Changes
+     * @author Vivek Adrakatti
      */
     public void adminWelcome() {
     	System.out.println("****** Welcome To System Configuration Menu ******\n");
@@ -97,7 +99,10 @@ public class AdminMovieUI {
                     configurePrice();
                     break;
                 case 2:
-                    addHolidayDates();
+                	String date;
+                    System.out.println("Enter New Holiday:");
+                    date=scanner.nextLine();
+                    HolidayManager.addHolidayDates(date);
                     break;
                 case 3:
                     topBySales();
@@ -110,18 +115,22 @@ public class AdminMovieUI {
     }
     }
     
+    /**
+     * List out the top 5 Movies by sales
+     * @auth Vivek Adrakatti
+     */
     public void topBySales() {
     	
     	 CustomerMovieManager iterator= new CustomerMovieManager();
     	 List<Movie> allMovies = new ArrayList<Movie>();
     	 allMovies = iterator.getAllMovies();
     	 
-    	 Collections.sort(allMovies,new Comparator<Movie>() {
+    	 Collections.sort(allMovies,new Comparator<Movie>() {//Sort Movie Objects according to Sales
     		  @Override
     		  public int compare(Movie u1, Movie u2) {
     			  return u1.getSales()<u2.getSales()?-1:u1.getSales()>u2.getSales()?1:0;
     	        
-    		    //return u2.getSales().compareTo(u1.getSales());
+    		    
     		  }
     		});
     	 
@@ -133,6 +142,10 @@ public class AdminMovieUI {
     	 }
     	
     }
+    /**
+     * List out the top 5 Movies by rating
+     * @auth Vivek Adrakatti
+     */
     public void topByRating() {
     	CustomerMovieManager allMovies = new CustomerMovieManager();
     	List<Movie> movies = allMovies.getAllMovies();
@@ -141,23 +154,13 @@ public class AdminMovieUI {
 
     
     /**
-     * Change Holiday Dates
-     */
-    public void addHolidayDates() {
-    	String date;
-        System.out.println("Enter New Holiday:");
-        date=scanner.nextLine();
-        CSVRow newRow = new CSVRow();
-        newRow.addVariable(date);
-    	CSVFileIO.writeToCSV(Date_Path,newRow);
-    }
-    
-    
-    /**
      * Change Price of Different Categories
+     * @author Vivek Adrakatti
      */
     public void configurePrice() {
-    	
+    	/**
+    	 * UI to Change Prices
+    	 */
         	List<CSVRow> table = CSVFileIO.getParsedCSV(Price_Path);
         	System.out.println("****** Welcome To Price Configuration Menu ******\n");
         	int ch=-1;
@@ -178,12 +181,14 @@ public class AdminMovieUI {
                 System.out.println("(11) - Change Pricing For Child");
                 System.out.println("(12) - Change Pricing For Senior Citizen");
                 System.out.println("(13) - Change Pricing For Platinum Class");
-                System.out.println("(14) - Change Pricing For Movie Suites");
+                
                 
 
                 ch= scanner.nextInt();
                 scanner.nextLine();
-
+                /**
+                 * Switch Cases to change Prices using PriceManager
+                 */
                 switch (ch) {
                     case 1:
                     	System.out.println("Enter New Price:");
@@ -263,12 +268,7 @@ public class AdminMovieUI {
                     	temp = String.valueOf(read);
                         (table.get(12)).Modify(1,temp);
                         PriceManager.rewrite(Price_Path,table);break;
-                    case 14:
-                    	System.out.println("Enter New Price:");
-                    	read = scanner.nextInt();
-                    	temp = String.valueOf(read);
-                        (table.get(13)).Modify(1,temp);
-                        PriceManager.rewrite(Price_Path,table);break;
+                    
                        
                     
                 }

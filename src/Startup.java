@@ -23,7 +23,7 @@ public class Startup {
         //Keep asking for input in while loop until input is correct
         while (true) {
             try {
-
+            	System.out.println("********************* Welcome To MOBLIMA ********************");
                 System.out.println("Hi, are you a customer or a staff member? Enter 0 if staff, 1 if customer:");
                 userType = sc.nextInt();
 
