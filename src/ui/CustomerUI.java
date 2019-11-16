@@ -55,6 +55,10 @@ public class CustomerUI {
                 case 4:
                 	bookingCall();
                 	break;
+                case 5:
+                	System.out.println("Enter Email ID Used:");
+                	String emailID = scanner.nextLine();
+                	BookingUI.printReviews(emailID);
                 case 6:
                 	System.out.println("Enter Name of Movie to Review and Rate:");
                 	//scanner.nextLine();
