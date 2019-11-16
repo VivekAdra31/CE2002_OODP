@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="utilities.CSVFileIO"/>
-    <fullyQualifiedTypeName name="utilities.CSVRow"/>
-    <fullyQualifiedTypeName name="managers.CustomerMovieListingDBManager"/>
     <fullyQualifiedTypeName name="entities.MovieListing"/>
     <fullyQualifiedTypeName name="entities.Booking"/>
     <fullyQualifiedTypeName name="entities.CinemaHall"/>
     <fullyQualifiedTypeName name="managers.BookingDBManager"/>
+    <fullyQualifiedTypeName name="managers.CustomerMovieDBManager"/>
+    <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="java.util.Collections"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="managers.CustomerMovieListingDBManager"/>
+    <fullyQualifiedTypeName name="modules.ReviewModule"/>
+    <fullyQualifiedTypeName name="utilities.CSVRow"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="managers.PriceDBManager"/>
 </qualifiedTypeNameHistroy>

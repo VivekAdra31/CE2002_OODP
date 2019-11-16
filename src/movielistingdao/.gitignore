@@ -5,3 +5,11 @@
 /IMovieListingDBDAO.class
 /AuthDBDAO.class
 /ReviewDBDAO.class
+/AdminMovieListingDAO.class
+/AuthDAO.class
+/CustomerMovieListingDAO.class
+/IAdminMovieListingDAO.class
+/ICustomerMovieListingDAO.class
+/IMovieListingDAO.class
+/PriceDAO.class
+/ReviewDAO.class

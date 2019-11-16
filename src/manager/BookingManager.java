@@ -63,7 +63,7 @@ public class BookingManager {
     		List<String> row = csvRow.getRow();
     		if(row.size()==0) {continue;}
     		
-    		System.out.println(row.size());
+    		//System.out.println(row.size());
     		Booking tempBooking = new Booking(row.get(1), row.get(3), Integer.parseInt(row.get(4)), row.get(2), row.get(5), row.get(6), row.get(0));
     		bookings.add(tempBooking);
     	}

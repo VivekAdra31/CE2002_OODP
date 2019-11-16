@@ -2,3 +2,6 @@
 /MovieListingDBDAOFactory.class
 /CineplexDBDAOFactory.class
 /PriceDBDAO.class
+/CineplexDAOFactory.class
+/MovieDAOFactory.class
+/MovieListingDAOFactory.class

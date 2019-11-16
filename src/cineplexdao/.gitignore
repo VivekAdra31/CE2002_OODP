@@ -3,3 +3,8 @@
 /IAdminCineplexDBDAO.class
 /ICineplexDBDAO.class
 /ICustomerCineplexDBDAO.class
+/AdminCineplexDAO.class
+/CustomerCineplexDAO.class
+/IAdminCineplexDAO.class
+/ICineplexDAO.class
+/ICustomerCineplexDAO.class

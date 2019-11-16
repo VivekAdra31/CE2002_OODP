@@ -3,3 +3,8 @@
 /IAdminMovieDBDAO.class
 /ICustomerMovieDBDAO.class
 /IMovieDBDAO.class
+/AdminMovieDAO.class
+/CustomerMovieDAO.class
+/IAdminMovieDAO.class
+/ICustomerMovieDAO.class
+/IMovieDAO.class

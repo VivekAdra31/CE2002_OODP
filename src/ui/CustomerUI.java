@@ -1,18 +1,23 @@
 package ui;
 import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import entities.Booking;
 import entities.CinemaHall;
 import entities.Movie;
 import entities.MovieListing;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import manager.BookingManager;
 import manager.CustomerMovieListingManager;
+import manager.CustomerMovieManager;
 import manager.PriceManager;
 import utility.CSVFileIO;
+import utility.CSVRow;
 /**
  * The main UI module for Customers.
  *
@@ -28,6 +33,9 @@ public class CustomerUI {
 
     public void startUp() {
         System.out.println("****** Welcome Customer ******");
+        
+        CustomerMovieManager manager = new CustomerMovieManager();
+        Movie movie;
 
         while (sel != 0) {
             System.out.println("Customer Module Main Menu:");
@@ -58,18 +66,21 @@ public class CustomerUI {
                 case 5:
                 	System.out.println("Enter Email ID Used:");
                 	String emailID = scanner.nextLine();
-                	BookingUI.printReviews(emailID);
+                	BookingUI.printReviews(emailID);break;
                 case 6:
                 	System.out.println("Enter Name of Movie to Review and Rate:");
                 	//scanner.nextLine();
                 	String tempMovie = scanner.nextLine();
-                	ReviewUI.addReview(tempMovie);
+            		
+            		movie = manager.searchMovie(tempMovie);
+                	ReviewUI.addReview(movie.getTitle());
                 	break;
                 case 7:
                 	System.out.println("Enter Name of Movie to view Reviews and Rating");
                 	String tempMovie1 = scanner.nextLine();
-                	ReviewUI.printReviews(tempMovie1);
-                	ReviewUI.printAverageRating(tempMovie1);
+                	movie = manager.searchMovie(tempMovie1);
+                	ReviewUI.printReviews(movie.getTitle());
+                	ReviewUI.printAverageRating(movie.getTitle());
                 	
                 	
                 	
@@ -94,12 +105,16 @@ public class CustomerUI {
         scanner.nextLine();
         String movieName = scanner.nextLine();
         movieName.trim();
+        
         CustomerMovieListingManager manager_listing = new CustomerMovieListingManager();
         
         List<MovieListing> relevantListings= manager_listing.searchMovieListingByFilmName(movieName);
        CustomerMovieListingUI db_module = new CustomerMovieListingUI();
        
-       System.out.println(relevantListings.size());
+       if(relevantListings.size()==0)
+       {System.out.println("No such movie");
+       return;
+       }
         for(int i=0 ;i<relevantListings.size();i++)
         {
         	System.out.println("Enter "+ (i+1)+ " To choose this listing");
@@ -149,7 +164,26 @@ public class CustomerUI {
         type2+=10;
         int price3=0;
         price3= PriceManager.fetch(type2);
-        System.out.println("The Price for your ticket is: "+(price1+price2+price3)+" .Pay on collection of Tickets");
+        ArrayList<CSVRow> holidays =CSVFileIO.getParsedCSV("holidays.csv");
+        holidays = CSVFileIO.getParsedCSV("holidays.csv");
+        int price4=0;
+    	for(int i =0; i< holidays.size();i++)
+    	{ 
+    		String sDate1=holidays.get(i).getRow().get(0);  
+    	    Date date1 = null;
+			try {
+				date1 = new SimpleDateFormat("yyyy-MM-dd").parse(sDate1);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+    		if(to_book.getShowTime().compareTo(date1)==0)
+    		{
+    			price4=5;
+    		}
+    	}
+    	
+        System.out.println("The Price for your ticket is: "+(price1+price2+price3+price4)+" .Pay on collection of Tickets");
         
         Booking book_new = new Booking(customerName,emailID,mobileNumber, movieName,String.valueOf(to_book.getCinemaHall().getHallNumber()),to_book.getCineplexName());
     	BookingManager.insertBooking(book_new);

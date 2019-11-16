@@ -8,3 +8,13 @@
 /AuthDBManager.class
 /ReviewDBManager.class
 /PriceDBManager.class
+/AdminCineplexManager.class
+/AdminMovieListingManager.class
+/AdminMovieManager.class
+/AuthManager.class
+/BookingManager.class
+/CustomerCineplexManager.class
+/CustomerMovieListingManager.class
+/CustomerMovieManager.class
+/PriceManager.class
+/ReviewManager.class

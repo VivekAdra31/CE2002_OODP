@@ -12,3 +12,16 @@
 /FileTest.class
 /price.class
 /PriceDBModule.class
+/AdminCineplexUI.class
+/AdminMovieListingUI.class
+/AdminMovieUI$1.class
+/AdminMovieUI.class
+/AdminUI.class
+/AuthUI.class
+/BookingUI.class
+/CustomerCineplexUI.class
+/CustomerMovieListingUI.class
+/CustomerMovieUI.class
+/CustomerUI.class
+/PriceUI.class
+/ReviewUI.class

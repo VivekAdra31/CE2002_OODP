@@ -1,5 +1,6 @@
 package utility;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -83,12 +84,18 @@ public class CSVFileIO {
        public static void writeToCSV(String path, CSVRow csvRow) {
     	   FileWriter csvWriter = null;
     	   try {
-    		   csvWriter = new FileWriter(path);
+    		   csvWriter = new FileWriter(path, true);
         	   
         	   List<String> row = csvRow.getRow();
         	   
+        	   // Check if file is empty
+    		   File file = new File(path);
+    		   if(file.length() != 0) {
+    			   csvWriter.append("\n");
+    		   }
+        	   
         	   csvWriter.append(String.join(",", row));
-        	   csvWriter.append("\n");
+        	   
         	   csvWriter.flush();
         	   csvWriter.close();
         	   

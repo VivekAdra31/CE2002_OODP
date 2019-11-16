@@ -103,7 +103,7 @@ public class AdminMovieUI {
                     topBySales();
                     break;
                 case 4:
-                    //topByRating();
+                    topByRating();
                     break;
                 
             }

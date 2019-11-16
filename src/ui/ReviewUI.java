@@ -29,12 +29,12 @@ public class ReviewUI {
 
                 System.out.println("Rate this movie from 1 to 5:");
                 int rating = sc.nextInt();
+                sc.nextLine();
                 
                 System.out.println("What is your review of the movie?:");
-                sc.nextLine();
                 String review = sc.nextLine();
 
-                //If input ie neither 0 nor 1, throw exception
+                //If input is neither 0 nor 1, throw exception
                 if (rating < 1 || rating > 5) {
                     throw new IOException();
                 }
@@ -99,6 +99,8 @@ public class ReviewUI {
      */
     public static void printTop5(List<Movie> movies) {
     	List<Reviews> reviewList = ReviewManager.getTop5Movies(movies);
+    	
+    	System.out.println("Total Movies with reviews: " + reviewList.size());
     	
     	for(Reviews reviews : reviewList) {
     		System.out.println("Movie: " + reviews.getReviewList().get(0).getMovieName());

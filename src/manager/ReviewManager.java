@@ -32,7 +32,6 @@ public class ReviewManager {
 		
 		for(Review review : reviewList) {
 			if(review.getMovieName().compareTo(movieName) == 0) {
-				System.out.println(review.getReview());
 				reviews.addReview(review.getReview(), review.getRating(), review.getMovieName());
 			}
 		}
@@ -69,11 +68,14 @@ public class ReviewManager {
 		Collections.sort(allMovieReviews);
 		
 		List<Reviews> top5Reviews = new ArrayList<>();
-		top5Reviews.add(allMovieReviews.get(0));
-		top5Reviews.add(allMovieReviews.get(1));
-		top5Reviews.add(allMovieReviews.get(2));
-		top5Reviews.add(allMovieReviews.get(3));
-		top5Reviews.add(allMovieReviews.get(4));
+		for(int i = 0; i < 5; i++) {
+			
+			if(allMovieReviews.get(i).getReviewList().size() == 0 || allMovieReviews.get(i).getReviewList().size() == 0) {
+				continue;
+			}
+			top5Reviews.add(allMovieReviews.get(i));
+			System.out.println("ADDED: " + allMovieReviews.get(i).getReviewList().size());
+		}
 		
 		return top5Reviews;
 	}
