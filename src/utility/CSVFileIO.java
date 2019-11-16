@@ -13,17 +13,17 @@ import java.util.List;
 * @author Lakshyajeet Dwivedee 
 */
 public class CSVFileIO {
-    
-    /**
-	 * Store parsed CSV data as a list of CSV rows
+
+	/*
+	 * Store parsed CSV data as a list of CSV rows 
 	 */
     private static ArrayList<CSVRow> CSVInfo = new ArrayList<>();
     
-    /**
-	 * Parses CSV and returns it as a list of list of attributes in String form
+    /*
+     * Parses CSV and returns it as a list of list of attributes in String form
 	 * @param path Path to the CSV file which has to be read
 	 * @return The ArrayList of CSVRow Arraylists
-	 */
+     */
     public static ArrayList<CSVRow> getParsedCSV(String path) {
     	
     	CSVInfo.clear();
@@ -76,11 +76,11 @@ public class CSVFileIO {
         }
         return CSVInfo;
     }
-    
-    /**
-   	 * Takes in a CSVRow and saves it to a CSV file
-   	 * @return The ArrayList of CSVRow Arraylists
-   	 */
+
+    /*
+     * Takes in a CSVRow and saves it to a CSV file
+   	 * @return The ArrayList of CSVRow Arraylists 
+     */
        public static void writeToCSV(String path, CSVRow csvRow) {
     	   FileWriter csvWriter = null;
     	   try {
@@ -105,8 +105,10 @@ public class CSVFileIO {
     	   
        }
        
-       /**
-        * To ReWrite a CSV
+       /*
+        * Rewrites a CSV file
+        * @param path Path of the CSV file
+        * @param table List containing CSVRow objects
         */
        public static void rewriteToCSV(String path, List<CSVRow> table) {
     	   
